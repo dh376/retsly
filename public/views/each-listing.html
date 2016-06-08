@@ -1,0 +1,7 @@
+<div class="listing-container" style="margin-top: 30px" ng-click="goToListing(listing.id)">
+	<div class="infos" ng-repeat="(key, value) in listing" >
+		<label>{{key}}: {{value}}</label>
+
+	</div>
+	<button ng-click="goToListing(listing.id)">See detail</button>
+</div>
