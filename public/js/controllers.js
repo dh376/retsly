@@ -15,7 +15,8 @@ angular.module('controllers', []).
     	],
     	order: "", // "asc" or "desc"
     	query: {
-    		fields: "id,mlsListingId,address,unitNumber,streetName,city,zipCode,listDate,price,expirationDate,ownership,yearBuilt,daysOnMarket,bedrooms,squareFootage" // default fields // will make it dynamic later
+    		//fields: "id,mlsListingId,address,unitNumber,streetName,city,zipCode,listDate,price,expirationDate,ownership,yearBuilt,daysOnMarket,bedrooms,squareFootage,media", // default fields // will make it dynamic later
+            // decided to fetch all fields because /{vendor}/listings/{listingId} this api endpoint keeps giving me authentication error...
     	},
     	listings: []
     });
@@ -24,11 +25,8 @@ angular.module('controllers', []).
     angular.extend($scope, {
     	search: function() {
 
-
     			console.log('query: ', $scope.query);
-
 		    	retslySvc.getVendorListings($scope.query).then(function(res) {
-		    		
 		    		$scope.listings = res.data.bundle;
 		    		console.log($scope.listings);
 

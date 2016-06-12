@@ -1,7 +1,27 @@
-<div class="listing-container" style="margin-top: 30px" ng-click="goToListing(listing.id)">
-	<div class="infos" ng-repeat="(key, value) in listing" >
-		<label>{{key}}: {{value}}</label>
-
+<div class="listing-container" ng-click="goToListing(listing.id)">
+	<div class="address">
+		<h3>{{listing.address}}</h3>
 	</div>
-	<button ng-click="goToListing(listing.id)">See detail</button>
+	<div class="big-image">
+		<img ng-src="{{currImg.url}}"/>
+	</div>
+	<div class="thumbnails">
+		<div class="thumbnail" ng-repeat="img in listing.media">
+			<img ng-src="{{img.url}}" ng-click="changeMainImg($index)"/>
+		</div>
+	</div>
+	<!-- <div class="infos" ng-repeat="(key, value) in listing" >
+		<label>{{key}}: {{value}}</label>
+	</div> -->
+	<button ng-click="showFullDetail()">See Detail</button>
+	<button ng-click="getAgent()">See Agento Info</button>
+	<button ng-click="getOffice()">See Office Info</button>
+
+	<div class="detail-view" ng-class="{detail: detailInfo}">
+		<div class="infos" ng-repeat="(key, value) in detailInfo">
+			<label>{{key}}: {{value}}</label>
+		</div>
+		<button ng-show="detailInfo" class="close-detail" ng-click="closeDetail()">Close Detail</button>
+	</div>
+
 </div>
