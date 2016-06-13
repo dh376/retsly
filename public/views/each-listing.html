@@ -13,14 +13,53 @@
 	<!-- <div class="infos" ng-repeat="(key, value) in listing" >
 		<label>{{key}}: {{value}}</label>
 	</div> -->
-	<button ng-click="showFullDetail()">See Detail</button>
-	<button ng-click="getAgent()">See Agento Info</button>
-	<button ng-click="getOffice()">See Office Info</button>
+	<div class="detail-options">
+		<button ng-click="showFullDetail()">See Detail</button>
+		<button ng-click="getAgent()">See Agento Info</button>
+		<button ng-click="getOffice()">See Office Info</button>
+	</div>
 
 	<div class="detail-view" ng-class="{detail: detailInfo}">
-		<div class="infos" ng-repeat="(key, value) in detailInfo">
-			<label>{{key}}: {{value}}</label>
+
+		<div ng-switch on="infoType">
+
+			<div ng-switch-when="listing">
+				<h4>Location Info</h4>
+				<div class="agent-info" ng-repeat="(key, value) in detailInfo.locationInfo">
+					<span style="font-weight: bold">{{key}}:</span> {{value}}
+				</div>
+				<h4>House Specs</h4>
+				<div class="agent-info" ng-repeat="(key, value) in detailInfo.houseSpecs">
+					<span style="font-weight: bold">{{key}}:</span> {{value}}
+				</div>
+				<h4>Listing Info</h4>
+				<div class="agent-info" ng-repeat="(key, value) in detailInfo.listingInfo">
+					<span style="font-weight: bold">{{key}}:</span> {{value}}
+				</div>
+				<h4>Price Info</h4>
+				<div class="agent-info" ng-repeat="(key, value) in detailInfo.priceInfo">
+					<span style="font-weight: bold">{{key}}:</span> {{value}}
+				</div>
+				<h4>Other</h4>
+				<div class="agent-info" ng-repeat="(key, value) in detailInfo.other">
+					<span style="font-weight: bold">{{key}}:</span> {{value}}
+				</div>
+			</div>
+
+			<div ng-switch-when="agent">
+				<div class="agent-info" ng-repeat="(key, value) in detailInfo">
+					<span style="font-weight: bold">{{key}}:</span> {{value}}
+				</div>
+			</div>
+
+			<div ng-switch-when="office">
+				<div class="office-info" ng-repeat="(key, value) in detailInfo">
+					<span style="font-weight: bold">{{key}}:</span> {{value}}
+				</div>
+			</div>
+
 		</div>
+
 		<button ng-show="detailInfo" class="close-detail" ng-click="closeDetail()">Close Detail</button>
 	</div>
 

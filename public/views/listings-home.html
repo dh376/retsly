@@ -1,44 +1,56 @@
 <div class="main-container">
-<h1>Retsly Listings</h1>
-<p>Find your Retsly listing below.</p>
-<p>You can also use the filters to search</p>
-<div class="filters-container">
-	<form name="filterForm" class="filter-form" ng-submit="search(query)">
+	<h1>Retsly Listings</h1>
+	<p>Find your Retsly listing below.</p>
+	<p>You can also use the filters to search</p>
+	<div class="filters-container">
+		<form name="filterForm" class="filter-form" ng-submit="search(query)">
 
-		<div class="location">
-        	<h2>Location</h2>
-        	<label>Near: </label>
-        	<input type="text" ng-model="query.near" ng-blur="search()"/>
-        	<p style="display:inline">enter coordinate or city name</p>
-        </div>
+			<div class="location">
+	        	<h2>Location</h2>
+	        	<label>Near: </label>
+	        	<input type="text" ng-model="query.near" ng-blur="search()"/>
+	        	<p style="display:inline">enter coordinate or city name</p>
+	        	<button ng-click="search()">Search!</button>
+	        </div>
 
-		<div class="filter">
-			<h2>Filter</h2>
-			<label>Sort By: </label>
-			<select class="" ng-model="query.sortBy" ng-change="search()">
-	                <option ng-repeat="cat in sortByOptions" value="{{sortByOptions[$index]}}" >{{sortByOptions[$index]}}</option>
-	        </select>
+			<div class="filter">
+				<h2>Filter</h2>
+				<label>Sort By: </label>
+				<select class="" ng-model="query.sortBy" ng-change="search()">
+		                <option ng-repeat="cat in sortByOptions" value="{{sortByOptions[$index]}}" >{{sortByOptions[$index]}}</option>
+		        </select>
 
-	        <label>Order By: </label>
-	        <select class="" ng-model="query.order" ng-change="search()">
-	        	<option value="asc">Ascending</option>
-	        	<option value="desc">Descending</option>
-	        </select>
-        </div>
+		        <label>Order By: </label>
+		        <select class="" ng-model="query.order" ng-change="search()">
+		        	<option value="asc">Ascending</option>
+		        	<option value="desc">Descending</option>
+		        </select>
+	        </div>
 
-        <!-- <div class="fields">
-        	<h2>Fields</h2>
-        	<select multiple class="" ng-model="query.fields" ng-change="change()">
+	        <!-- <div class="fields">
+	        	<h2>Fields</h2>
+	        	<select multiple class="" ng-model="query.fields" ng-change="change()">
 
-        	</select>
-        </div> -->
+	        	</select>
+	        </div> -->
 
-	</form>
-</div>
-<div class="list">
-	<div ng-repeat="listing in listings">
-		<each-listing listing="listing"></each-listing>
+		</form>
 	</div>
-	<button class="load-more" ng-click="loadMore()">Load More</button>
+	<div class="list">
+		<div ng-repeat="listing in listings">
+			<each-listing listing="listing"></each-listing>
+		</div>
+		<div ng-class="no-result" ng-if="listings.length==0 && searched">
+			Sorry, no result for your search.
+		</div>
+		<button class="load-more" ng-if="searched" ng-click="loadMore()">Load More</button>
+	</div>
 </div>
-</div>
+
+
+
+
+
+
+
+

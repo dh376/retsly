@@ -12,8 +12,14 @@ angular.module('directives', []).
         },
         controller: function($scope, $state, retslySvc) {
 
+            $scope.infoType = "";
+
             $scope.showFullDetail = function() {
-                $scope.detailInfo = $scope.listing;
+                //console.log($scope.listing);
+                var info = retslySvc.sortListingDetail($scope.listing);
+                console.log(info);
+                $scope.detailInfo = info;
+                $scope.infoType = "listing";
             }
 
             $scope.getAgent = function() {
@@ -21,18 +27,27 @@ angular.module('directives', []).
                 retslySvc.getAgent($scope.listing.id).then(function(res) {
                     console.log(res);
                     $scope.detailInfo = res.data.bundle;
+                    $scope.infoType = "agent";
+                }, function(err) {
+                    console.log(err);
+                    alert("Sorry, our server returned an error.\n\n"+err.data.bundle.name+"\n\n"+err.data.bundle.message);
                 });
             };
 
             $scope.getOffice = function() {
                 retslySvc.getOffice($scope.listing.id).then(function(res) {
                     console.log(res);
-
+                    $scope.detailInfo = res.data.bundle;
+                    $scope.infoType = "office";
+                }, function(err) {
+                    console.log(err);
+                    alert("Sorry, our server returned an error.\n\n"+err.data.bundle.name+"\n\n"+err.data.bundle.message);
                 })
             }
 
             $scope.closeDetail = function() {
                 $scope.detailInfo = false;
+                $scope.infoType = "";
             }
 
 

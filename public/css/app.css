@@ -70,3 +70,26 @@
 .list {
   text-align: center;
 }
+
+.no-result {
+  margin: 50px;
+}
+
+.close-detail {
+  margin-top: 20px;
+}
+
+.detail-options {
+  margin: 20px;
+}
+
+.detail-view {
+  text-align: left;
+}
+
+
+
+
+
+
+
