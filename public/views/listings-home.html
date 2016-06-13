@@ -43,7 +43,10 @@
 		<div ng-class="no-result" ng-if="listings.length==0 && searched">
 			Sorry, no result for your search.
 		</div>
-		<button class="load-more" ng-if="searched" ng-click="loadMore()">Load More</button>
+		<div ng-if="noMore">
+			No more results to be shown.
+		</div>
+		<button class="load-more" ng-if="searched && noMore == false" ng-click="loadMore()">Load More</button>
 	</div>
 </div>
 

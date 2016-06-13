@@ -31,13 +31,17 @@ angular.module('controllers', []).
                     $scope.searched = true;
 		    		$scope.listings = res.data.bundle;
 		    		console.log($scope.listings);
-
+                    $scope.noMore = false;
 			  	});
 	    	},
 	    loadMore: function () {
 	    	$scope.query.offset = $scope.listings.length;
 	    	retslySvc.getVendorListings($scope.query).then(function(res) {
+
 	    		$scope.listings = $scope.listings.concat(res.data.bundle);
+                if (res.data.bundle.length == 0) {
+                    $scope.noMore = true;
+                }
 	    	})
 	    }
     })
