@@ -11,7 +11,7 @@ angular.module('services', []).
 
   		getVendorListings: function(options) {
   			var queryString = $httpParamSerializerJQLike(options);
-  			var url = "https://rets.io/api/v1/test/listings?access_token=6baca547742c6f96a6ff71b138424f21&" + queryString
+  			var url = "https://rets.io/api/v1/test/listings?access_token=&" + queryString
   			console.log("url: " + url);
   			return $http.get(url);
   		},
@@ -20,12 +20,12 @@ angular.module('services', []).
       // "Invalid token context. Please use a browser token for this request."
   		getListingById: function(id) {
   			//var queryString = $httpParamSerializerJQLike(options);
-  			var url = "https://rets.io/api/v1/test/listings/" + id + "?access_token=6baca547742c6f96a6ff71b138424f21";
+  			var url = "https://rets.io/api/v1/test/listings/" + id + "?access_token=";
   			return $http({
           method: 'GET',
           url: url,
           headers: {
-            'authorization': "Bearer 6baca547742c6f96a6ff71b138424f21"
+            'authorization': "Bearer "
           }
         });
   		},
@@ -38,7 +38,7 @@ angular.module('services', []).
           method: 'GET',
           url: url,
           headers: {
-            'Authorization': "Bearer 6baca547742c6f96a6ff71b138424f21"
+            'Authorization': "Bearer "
           }
         });
       },
@@ -50,7 +50,7 @@ angular.module('services', []).
           method: 'GET',
           url: url,
           headers: {
-            'Authorization': "Bearer 6baca547742c6f96a6ff71b138424f21"
+            'Authorization': "Bearer "
           }
         });
       },
